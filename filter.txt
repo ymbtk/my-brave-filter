@@ -1,4 +1,23 @@
-www.youtube.com##ytd-topbar-logo-renderer
-www.youtube.com###logo
-www.youtube.com##ytd-logo
+// ==UserScript==
+// @name         YouTube ロゴをクリックで登録チャンネルページへ
+// @namespace    http://tampermonkey.net/
+// @version      0.1
+// @description YouTubeのロゴをクリックした際に、ホームページではなく登録チャンネルページに飛ぶようにする
+// @author       You
+// @match        https://www.youtube.com/*
+// @grant        none
+// ==/UserScript==
 
+(function() {
+    'use strict';
+
+    // YouTubeのロゴのクリックイベントをリスン
+    const youtubeLogo = document.querySelector('ytd-topbar-logo-renderer');
+
+    if (youtubeLogo) {
+        youtubeLogo.addEventListener('click', function(event) {
+            // ロゴがクリックされたら、登録チャンネルページにリダイレクト
+            window.location.href = 'https://www.youtube.com/feed/subscriptions';
+        });
+    }
+})();
